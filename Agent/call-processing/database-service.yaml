@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+  namespace: 911-platform
+
+spec:
+  selector:
+    run: database
+
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
+  type: ClusterIP

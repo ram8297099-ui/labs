@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: call-processing
+  namespace: 911-platform
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: call-processing
+
+  template:
+    metadata:
+      labels:
+        app: call-processing
+
+    spec:
+      containers:
+        - name: call-processing
+          image: call-processing:1.0
+
+          imagePullPolicy: Never
+
+          env:
+            - name: DATABASE_HOST
+              value: "database"
+
+            - name: DATABASE_PORT
+              value: "5432"
